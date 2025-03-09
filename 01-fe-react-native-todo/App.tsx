@@ -1,45 +1,61 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import InputTodo from './component/todo/input.todo';
+import ListTodo from './component/todo/list.todo';
 
 export default function App() {
 
-  //string
-  const [name, setname] = useState<String>("hoi dan it");
+  // //number
+  // const [age, setAge] = useState<number>(30);
 
-  //number
-  const [age, setAge] = useState<number>(30);
+  // // null, undefine
+  // const test = false;
 
-  // null, undefine
-  const test = false;
+  // //object, array
+  // const [person, setPerson] = useState(
+  //   {
+  //     name: "hoi dan it",
+  //     age: 25
+  //   }
+  // )
 
-  //object, array
-  const [person, setPerson] = useState(
-    {
-      name: "hoi dan it",
-      age: 25
-    }
-  )
+  const [todoList, setToDoList] = useState<ITodo[]>([
+    { id: 1, title: "Learn react native " },
+    { id: 2, title: "Learn react native" },
+    { id: 3, title: "Learn react native" },
+    { id: 4, title: "Learn react native" },
+    { id: 5, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+    { id: 6, title: "Learn react native" },
+
+  ])
+
 
   return (
     <View style={styles.container}>
-      <View>
 
-        <Text style={styles.text}>{name}</Text>
+      <InputTodo />
+      <ListTodo
+        todoList={todoList}
+      />
 
-        <TextInput autoCapitalize='none'
-          style={{
-            borderColor: "violet",
-            borderWidth: 1,
-            padding: 10
-          }} />
-      </View>
-      <Text>Hello word with hoidanit</Text>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
   text: {
     fontSize: 30,
     color: "red"
