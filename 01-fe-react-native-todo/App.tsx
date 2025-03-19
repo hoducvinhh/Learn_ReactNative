@@ -20,33 +20,33 @@ export default function App() {
   //   }
   // )
 
-  const [todoList, setToDoList] = useState<ITodo[]>([
-    { id: 1, title: "Learn react native " },
-    { id: 2, title: "Learn react native" },
-    { id: 3, title: "Learn react native" },
-    { id: 4, title: "Learn react native" },
-    { id: 5, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
-    { id: 6, title: "Learn react native" },
+  const [todoList, setToDoList] = useState<ITodo[]>([])
 
-  ])
+  function radomInteger(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const addTodo = (title: string) => {
+
+    const todo = { id: radomInteger(1, 100000), title: title };
+    setToDoList([...todoList, todo])
+  }
+
+  const deleteTodo = (id: number) => {
+    const newTodo = todoList.filter(todo => todo.id != id)
+    setToDoList(newTodo)
+  }
 
 
   return (
     <View style={styles.container}>
 
-      <InputTodo />
+      <InputTodo
+
+        addTodo={addTodo} />
       <ListTodo
         todoList={todoList}
+        deleteTodo={deleteTodo}
       />
 
 
@@ -56,10 +56,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
 
-  text: {
-    fontSize: 30,
-    color: "red"
-  },
+
   container: {
     flex: 1,
     backgroundColor: '#fff',
