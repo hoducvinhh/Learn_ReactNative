@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native"
+import { Alert, Button, StyleSheet, TextInput, View } from "react-native"
 
 
 
@@ -25,7 +25,25 @@ const InputTodo = (props: IProps) => {
 
     const [name, setName] = useState<string>("");
     const handleAddNewTodo = () => {
+        if (!name) {
+            Alert.alert("thong tin khong hop le",
+                "Tieu de khong duoc de trong",
+                [
+                    {
+                        text: "Cancel",
+                        onPress: () => console.log("Cancel preed"),
+                        style: "cancel",
+                    },
+
+                    { text: "Ok", onPress: () => console.log("on pressed") },
+                ]
+
+            );
+            return;
+        }
+
         addTodo(name);
+        setName("");
     }
 
 
